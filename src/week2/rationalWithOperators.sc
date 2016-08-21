@@ -1,4 +1,4 @@
-object rational {
+object rationalWithOperators {
 
   class Rational(x: Int, y: Int) {
     require(y != 0, "denominator must be nonzero")
