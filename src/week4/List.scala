@@ -1,10 +1,9 @@
-package week3
-
-import java.util.NoSuchElementException
-
 /**
-  * Created by ulises on 24/08/16.
+  * Created by ulises on 29/08/16.
   */
+
+package week4
+
 trait List[T] {
 
   def isEmpty: Boolean
@@ -43,3 +42,17 @@ class Nil[T] extends List[T] {
 
   def nth(position: Int): Unit = throw new IndexOutOfBoundsException("Nil.nth")
 }
+
+
+object List {
+
+  def apply(elem: Int, selem: Int): List[Int] = new Cons(elem, new Cons(selem, new Nil))
+
+  def apply(elem: Int): List[Int] = new Cons(elem, new Nil)
+
+  def apply(): List[Int] = new Nil
+
+
+}
+
+

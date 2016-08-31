@@ -1,11 +1,10 @@
-package week3
-
-import java.util.NoSuchElementException
-
 /**
-  * Created by ulises on 24/08/16.
+  * Created by ulises on 29/08/16.
   */
-trait List[T] {
+
+package week4covariance
+
+trait List[+T] {
 
   def isEmpty: Boolean
 
@@ -13,9 +12,13 @@ trait List[T] {
 
   def tail: List[T]
 
-  def singleton(elem: T) = new Cons[T](elem, new Nil[T])
+  def singleton[U >: T](elem: U) = new Cons(elem, new Nil)
+
+  def prepend[U >: T](elem: U) = new Cons(elem, this)
 
   def nth(position: Int)
+
+
 
 }
 
@@ -33,7 +36,7 @@ class Cons[T](val head: T, val tail: List[T]) extends List[T] {
   }
 }
 
-class Nil[T] extends List[T] {
+class Nil extends List[Nothing] {
 
   def isEmpty: Boolean = true
 
@@ -43,3 +46,6 @@ class Nil[T] extends List[T] {
 
   def nth(position: Int): Unit = throw new IndexOutOfBoundsException("Nil.nth")
 }
+
+
+
